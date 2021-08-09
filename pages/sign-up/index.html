@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+  
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+    <title>Sign Up</title>
+</head>
+<body>
+    <div>
+        <input type="email" name="email" id="user-email" placeholder="enter your email">
+        <input type="password" name="password" id="user-passowrd" placeholder="enter your password">
+        <button onClick="register()">Sign up</button>
+    </div>
+
+
+</body>
+
+<script>
+
+function register(){
+var email = document.getElementById('user-email').value;
+var password = document.getElementById('user-passowrd').value;
+
+console.log(email , password)
+firebase.auth().createUserWithEmailAndPassword(email , password)
+  .then((userCredential) => {
+    // Signed in 
+    var user = userCredential.user;
+    console.log('user created!!!', user)
+    // ...
+  })
+  .catch((error) => {
+      console.log('error occured!', error)
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });
+
+
+ document.getElementById('user-email').value = '';
+ document.getElementById('user-passowrd').value = '';
+}
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBCKAz-IjfdhThScYEX5HlMuxWrBB_9nkE",
+    authDomain: "quiz-app-c058e.firebaseapp.com",
+    databaseURL: "https://quiz-app-c058e-default-rtdb.firebaseio.com",
+    projectId: "quiz-app-c058e",
+    storageBucket: "quiz-app-c058e.appspot.com",
+    messagingSenderId: "216513070916",
+    appId: "1:216513070916:web:571643cb73948e3f8d3911"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+//  
+//   firebase.auth().signInWithEmailAndPassword('noman@yahoo.com', '123456')
+//   .then((userCredential) => {
+//     // Signed in 
+//     var user = userCredential.user;
+//     console.log('user logged in!!!', user)
+//     // ...
+//   })
+//   .catch((error) => {
+//       console.log('error occured!', error)
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//     // ..
+//   });
+// firebase.auth().signOut()
+
+</script>
+</html>
